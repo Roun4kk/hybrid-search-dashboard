@@ -1,7 +1,12 @@
 .venv
 __pycache__
 *.pyc
+
+# generated indexes
+data/index/*
+data/processed/*
 *.pkl
 *.index
+
+# database
 *.db
-.env
