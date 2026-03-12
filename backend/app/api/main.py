@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from backend.app.search.hybrid import HybridSearch
 from backend.app.db.db import init_db, log_query
+import sqlite3
 
 app = FastAPI(title="Hybrid Search + KPI Dashboard", version="1.0")
 
@@ -37,3 +38,40 @@ def search(req: SearchRequest):
     )
 
     return {"results": results}
+
+@app.get("/metrics")
+def metrics():
+
+    conn = sqlite3.connect("data/metrics/search_logs.db")
+    cur = conn.cursor()
+
+    # total queries
+    cur.execute("SELECT COUNT(*) FROM search_logs")
+    total_queries = cur.fetchone()[0]
+
+    # top queries
+    cur.execute("""
+        SELECT query, COUNT(*) as count
+        FROM search_logs
+        GROUP BY query
+        ORDER BY count DESC
+        LIMIT 5
+    """)
+    top_queries = cur.fetchall()
+
+    # zero result queries
+    cur.execute("""
+        SELECT query, COUNT(*)
+        FROM search_logs
+        WHERE result_count = 0
+        GROUP BY query
+    """)
+    zero_results = cur.fetchall()
+
+    conn.close()
+
+    return {
+        "total_queries": total_queries,
+        "top_queries": top_queries,
+        "zero_result_queries": zero_results
+    }
