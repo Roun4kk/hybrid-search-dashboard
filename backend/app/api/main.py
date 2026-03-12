@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from backend.app.search.hybrid import HybridSearch
+from backend.app.db.db import init_db, log_query
 
 app = FastAPI(title="Hybrid Search + KPI Dashboard", version="1.0")
 
+init_db()
 search_engine = HybridSearch()
 
 
@@ -25,6 +27,13 @@ def search(req: SearchRequest):
         req.query,
         req.top_k,
         req.alpha
+    )
+
+    log_query(
+        req.query,
+        req.top_k,
+        req.alpha,
+        len(results)
     )
 
     return {"results": results}
