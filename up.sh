@@ -12,10 +12,10 @@ echo "Running ingestion..."
 python -m backend.app.ingest
 
 echo "Building BM25 index..."
-python backend/app/index/index_bm25.py --input data/processed/docs.jsonl --out data/index/bm25
+python -m backend.app.index.index_bm25 --input data/processed/docs.jsonl --out data/index/bm25
 
 echo "Building vector index..."
-python backend/app/index/index_vector.py --input data/processed/docs.jsonl --out data/index/vector
+python -m backend.app.index.index_vector --input data/processed/docs.jsonl --out data/index/vector
 
 echo "Starting API server..."
 uvicorn backend.app.api.main:app --reload &
