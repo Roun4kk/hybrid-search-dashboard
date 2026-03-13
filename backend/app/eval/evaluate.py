@@ -1,3 +1,6 @@
+import json
+import csv
+import datetime
 import math
 from backend.app.search.hybrid import HybridSearch
 
@@ -47,17 +50,19 @@ def run_eval():
 
     search = HybridSearch()
 
-    queries = [
-        ("machine learning", ["doc1.txt"]),
-        ("python programming", ["doc2.txt"]),
-        ("api framework", ["doc3.txt"])
-    ]
+    queries = [json.loads(line) for line in open("data/eval/queries.jsonl")]
+    qrels = json.load(open("data/eval/qrels.json"))
 
     ndcg_scores = []
     recall_scores = []
     mrr_scores = []
 
-    for query, relevant in queries:
+    for q in queries:
+
+        query = q["query"]
+        qid = q["query_id"]
+
+        relevant = qrels.get(qid, [])
 
         results = search.search(query, top_k=10)
 
@@ -65,9 +70,25 @@ def run_eval():
         recall_scores.append(recall_at_k(results, relevant))
         mrr_scores.append(mrr(results, relevant))
 
-    print("Average nDCG:", sum(ndcg_scores) / len(ndcg_scores))
-    print("Average Recall:", sum(recall_scores) / len(recall_scores))
-    print("Average MRR:", sum(mrr_scores) / len(mrr_scores))
+    avg_ndcg = sum(ndcg_scores) / len(ndcg_scores)
+    avg_recall = sum(recall_scores) / len(recall_scores)
+    avg_mrr = sum(mrr_scores) / len(mrr_scores)
+
+    print("Average nDCG:", avg_ndcg)
+    print("Average Recall:", avg_recall)
+    print("Average MRR:", avg_mrr)
+
+    # save experiment
+    with open("data/metrics/experiments.csv", "a", newline="") as f:
+        writer = csv.writer(f)
+
+        writer.writerow([
+            datetime.datetime.now(),
+            0.5,
+            avg_ndcg,
+            avg_recall,
+            avg_mrr
+        ])
 
 
 if __name__ == "__main__":

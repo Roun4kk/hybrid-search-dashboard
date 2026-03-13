@@ -1,0 +1,27 @@
+{
+  "q1": [
+    "doc_111.txt",
+    "doc_17.txt",
+    "doc_137.txt"
+  ],
+  "q2": [
+    "doc_89.txt",
+    "doc_77.txt",
+    "doc_242.txt"
+  ],
+  "q3": [
+    "doc2.txt",
+    "doc3.txt",
+    "doc1.txt"
+  ],
+  "q4": [
+    "doc_54.txt",
+    "doc_173.txt",
+    "doc_240.txt"
+  ],
+  "q5": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ]
+}

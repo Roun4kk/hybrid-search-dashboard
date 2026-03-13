@@ -11,12 +11,15 @@ pip install -r requirements.txt
 echo "Running ingestion..."
 python -m backend.app.ingest --input data/raw --out data/processed/docs.jsonl
 
-echo "Building BM25 index..."
-python -m backend.app.index.index_bm25 --input data/processed/docs.jsonl --out data/index/bm25
+if [ ! -f data/index/bm25/bm25.pkl ]; then
+    echo "Building BM25 index..."
+    python -m backend.app.index.index_bm25 --input data/processed/docs.jsonl --out data/index/bm25
+fi
 
-echo "Building vector index..."
-python -m backend.app.index.index_vector --input data/processed/docs.jsonl --out data/index/vector
-
+if [ ! -f data/index/vector/vector.index ]; then
+    echo "Building vector index..."
+    python -m backend.app.index.index_vector --input data/processed/docs.jsonl --out data/index/vector
+fi
 echo "Starting API server..."
 uvicorn backend.app.api.main:app --reload &
 

@@ -41,6 +41,8 @@ def main():
     args = parser.parse_args()
 
     docs = read_documents(args.input)
+    if not docs:
+        raise ValueError("No documents found in input directory")
 
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
 
