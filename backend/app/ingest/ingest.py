@@ -42,9 +42,9 @@ def main():
 
     docs = read_documents(args.input)
 
-    os.makedirs(args.out, exist_ok=True)
+    os.makedirs(os.path.dirname(args.out), exist_ok=True)
 
-    output_file = os.path.join(args.out, "docs.jsonl")
+    output_file = args.out
 
     write_jsonl(docs, output_file)
 
