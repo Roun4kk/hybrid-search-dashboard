@@ -30,11 +30,19 @@ def search(req: SearchRequest):
         req.alpha
     )
 
+    # determine if results are meaningful
+    max_score = max([r["hybrid_score"] for r in results]) if results else 0
+
+    if max_score < 0.2:
+        result_count = 0
+    else:
+        result_count = len(results)
+
     log_query(
         req.query,
         req.top_k,
         req.alpha,
-        len(results)
+        result_count
     )
 
     return {"results": results}
@@ -65,6 +73,7 @@ def metrics():
         FROM search_logs
         WHERE result_count = 0
         GROUP BY query
+        ORDER BY COUNT(*) DESC
     """)
     zero_results = cur.fetchall()
 
