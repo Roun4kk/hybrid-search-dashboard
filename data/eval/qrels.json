@@ -23,5 +23,105 @@
     "doc3.txt",
     "doc2.txt",
     "doc1.txt"
+  ],
+  "q6": [
+    "doc_152.txt",
+    "doc_40.txt",
+    "doc_192.txt"
+  ],
+  "q7": [
+    "doc_61.txt",
+    "doc_263.txt",
+    "doc_167.txt"
+  ],
+  "q8": [
+    "doc_118.txt",
+    "doc_187.txt",
+    "doc_244.txt"
+  ],
+  "q9": [
+    "doc_39.txt",
+    "doc_206.txt",
+    "doc_255.txt"
+  ],
+  "q10": [
+    "doc_123.txt",
+    "doc_144.txt",
+    "doc_105.txt"
+  ],
+  "q11": [
+    "doc_241.txt",
+    "doc_267.txt",
+    "doc_172.txt"
+  ],
+  "q12": [
+    "doc_171.txt",
+    "doc_204.txt",
+    "doc_47.txt"
+  ],
+  "q13": [
+    "doc_271.txt",
+    "doc_43.txt",
+    "doc_165.txt"
+  ],
+  "q14": [
+    "doc_87.txt",
+    "doc_44.txt",
+    "doc_156.txt"
+  ],
+  "q15": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ],
+  "q16": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ],
+  "q17": [
+    "doc_61.txt",
+    "doc_263.txt",
+    "doc_167.txt"
+  ],
+  "q18": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ],
+  "q19": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ],
+  "q20": [
+    "doc3.txt",
+    "doc2.txt",
+    "doc1.txt"
+  ],
+  "q21": [
+    "doc_28.txt",
+    "doc_269.txt",
+    "doc_22.txt"
+  ],
+  "q22": [
+    "doc_187.txt",
+    "doc_244.txt",
+    "doc_103.txt"
+  ],
+  "q23": [
+    "doc_39.txt",
+    "doc_206.txt",
+    "doc_255.txt"
+  ],
+  "q24": [
+    "doc_235.txt",
+    "doc_262.txt",
+    "doc_31.txt"
+  ],
+  "q25": [
+    "doc_28.txt",
+    "doc_269.txt",
+    "doc_22.txt"
   ]
 }
